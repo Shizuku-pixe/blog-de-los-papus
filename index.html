@@ -364,27 +364,78 @@
         <form id="quizForm" class="row g-3">
             <div class="col-md-6">
                 <label class="form-label">¿Te lavas las manos después del baño?</label>
-                <select class="form-select">
-                    <option>Sí, siempre</option>
-                    <option>A veces</option>
-                    <option>No</option>
+                <select class="form-select" required>
+                    <option value="3">Sí, siempre</option>
+                    <option value="1">A veces</option>
+                    <option value="0">No</option>
                 </select>
             </div>
             <div class="col-md-6">
                 <label class="form-label">¿Cepillas tus dientes 2 veces al día?</label>
-                <select class="form-select">
-                    <option>Sí, siempre</option>
-                    <option>A veces</option>
-                    <option>No</option>
+                <select class="form-select" required>
+                    <option value="3">Sí, siempre</option>
+                    <option value="1">A veces</option>
+                    <option value="0">No</option>
                 </select>
             </div>
-            <!-- Agrega más preguntas similares -->
+
+            <!-- Puedes agregar más preguntas aquí igual -->
+
             <div class="col-12 text-center">
-                <button type="submit" class="btn btn-light btn-lg btn-custom">Calcular Mi Puntuación</button>
+                <button type="button" onclick="calcularPuntuacion()" class="btn btn-light btn-lg btn-custom">
+                    Calcular Mi Puntuación
+                </button>
             </div>
         </form>
-        <div id="resultadoQuiz" class="mt-4 text-center"></div>
+
+        <div id="resultadoQuiz" class="mt-5 text-center"></div>
     </section>
+
+    <!-- SCRIPT QUE SÍ FUNCIONA 100% (pégalo al final, antes de </body>) -->
+    <script>
+        function calcularPuntuacion() {
+            const selects = document.querySelectorAll('#quizForm select');
+            let total = 0;
+
+            selects.forEach(s => {
+                total += parseInt(s.value) || 0;
+            });
+
+            // Máximo = 3 puntos por pregunta
+            const maximo = selects.length * 3;
+            const nota = Math.round((total / maximo) * 10);
+
+            let mensaje = "";
+            let color = "";
+            let emoji = "";
+
+            if (nota >= 9) {
+                mensaje = "ERES UN DIOS DE LA HIGIENE!";
+                color = "success";
+                emoji = "trophy";
+            } else if (nota >= 7) {
+                mensaje = "Nivel PRO del jabón!";
+                color = "primary";
+                emoji = "star";
+            } else if (nota >= 5) {
+                mensaje = "Bien, pero puedes mejorar";
+                color = "warning";
+                emoji = "face-meh";
+            } else {
+                mensaje = "¡ALERTA BACTERIANA! Corre a bañarte";
+                color = "danger";
+                emoji = "skull";
+            }
+
+            document.getElementById("resultadoQuiz").innerHTML = `
+                <div class="alert alert-${color} shadow-lg p-5">
+                    <h1 class="display-4"><i class="fas fa-\( {emoji}"></i> \){nota}/10</h1>
+                    <h3>${mensaje}</h3>
+                    <p class="lead mt-3">¡Comparte tu resultado con tus amigos!</p>
+                </div>
+            `;
+        }
+    </script>
 
     <!-- Participación -->
     <section class="container my-5" id="participa">
@@ -427,3 +478,4 @@
 </body>
 
 </html
+

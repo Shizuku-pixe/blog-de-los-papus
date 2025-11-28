@@ -390,7 +390,7 @@
 
             // Recorre cada pregunta
             for (const question in correctAnswers) {
-                const selected = form.querySelector(`input[name="${question}"]:checked`);
+                const selected = form.querySelector(input[name="${question}"]:checked);
                 
                 if (selected) {
                     // Si la respuesta seleccionada tiene el valor de la respuesta correcta (10)
@@ -420,7 +420,7 @@
                 feedbackText = 'Es una buena base, pero hay áreas de mejora. ¡Revisa la información de la campaña!';
             }
 
-            scoreDisplay.textContent = `Puntuación: ${finalScore} / 10`;
+            scoreDisplay.textContent = Puntuación: ${finalScore} / 10;
             feedbackDisplay.textContent = feedbackText;
             
             resultDiv.style.display = 'block';

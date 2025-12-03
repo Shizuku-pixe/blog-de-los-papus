@@ -3,374 +3,818 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campaña Integral de Higiene y Salud: Tu Bienestar en Acción</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Higiene y Salud - Guía Completa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <style>
         :root {
-            --color-salud: #28a745; /* Verde para salud */
-            --color-limpio: #007bff; /* Azul para limpieza */
-            --color-advertencia: #dc3545; /* Rojo para consecuencias */
-            --color-fondo: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            --primary-color: #4CAF50;
+            --secondary-color: #2196F3;
+            --accent-color: #FFC107;
+            --light-bg: #f8f9fa;
+            --dark-text: #333;
         }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--color-fondo);
-            color: #333;
+            color: var(--dark-text);
+            line-height: 1.6;
         }
-        .hero {
-            background: linear-gradient(rgba(0,123,255,.8), rgba(40,167,69,.6)), url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+
+        .navbar {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(76, 175, 80, 0.7), rgba(33, 150, 243, 0.7)), url('https://picsum.photos/seed/health/1600/600.jpg');
             background-size: cover;
             background-position: center;
             color: white;
             padding: 100px 0;
             text-align: center;
-            animation: fadeIn 2s ease-in;
+            margin-bottom: 40px;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .navbar {
-            background: var(--color-limpio) !important;
-            box-shadow: 0 2px 10px rgba(0,123,255,0.3);
-        }
-        .navbar-brand, .nav-link {
-            color: white !important;
-            font-weight: bold;
-        }
-        .nav-link:hover {
-            color: var(--color-salud) !important;
-        }
-        .section-hero {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            padding: 40px;
-            margin: 20px 0;
-            animation: slideInUp 1s ease-out;
-        }
-        @keyframes slideInUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        .higiene-card {
-            background: linear-gradient(145deg, #ffffff, #f8f9fa);
-            border: none;
-            border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+
+        .section-title {
+            color: var(--primary-color);
             margin-bottom: 30px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            padding-bottom: 15px;
         }
-        .higiene-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
         }
-        .card-header {
-            background: var(--color-limpio);
-            color: white;
-            font-weight: bold;
+
+        .card {
             border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
         }
-        .consecuencias {
-            background: var(--color-advertencia);
-            color: white;
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .quiz-container {
+            background-color: var(--light-bg);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-question {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .quiz-question.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .quiz-options {
+            margin-top: 20px;
+        }
+
+        .quiz-option {
+            display: block;
+            width: 100%;
             padding: 15px;
+            margin-bottom: 10px;
+            background-color: white;
+            border: 2px solid #e0e0e0;
             border-radius: 10px;
-            margin-top: 15px;
-            font-style: italic;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s;
         }
-        .beneficios {
-            background: var(--color-salud);
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 15px;
+
+        .quiz-option:hover {
+            background-color: #f0f0f0;
+            border-color: var(--secondary-color);
         }
-        .tip-item {
-            background: #e9ecef;
-            padding: 10px;
-            margin: 5px 0;
-            border-radius: 8px;
-            border-left: 4px solid var(--color-limpio);
+
+        .quiz-option.correct {
+            background-color: #d4edda;
+            border-color: #28a745;
         }
-        .progress-higiene {
-            height: 20px;
-            background: #e9ecef;
-            border-radius: 10px;
-            margin: 10px 0;
+
+        .quiz-option.incorrect {
+            background-color: #f8d7da;
+            border-color: #dc3545;
         }
+
+        .quiz-result {
+            display: none;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .quiz-result.active {
+            display: block;
+        }
+
+        .progress-bar-container {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
         .progress-bar {
-            background: linear-gradient(90deg, var(--color-salud), var(--color-limpio));
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 5px;
+            transition: width 0.5s;
         }
-        .footer {
-            background: var(--color-limpio);
+
+        footer {
+            background-color: #333;
             color: white;
             padding: 40px 0;
-            text-align: center;
+            margin-top: 50px;
         }
-        .icon {
-            font-size: 2rem;
-            color: var(--color-salud);
-            margin-right: 10px;
-        }
-        .accordion-button {
-            background: var(--color-limpio);
+
+        .footer-links a {
             color: white;
-            font-weight: bold;
+            text-decoration: none;
+            margin-right: 15px;
+            transition: color 0.3s;
         }
-        .accordion-button:not(.collapsed) {
-            background: var(--color-salud);
-            color: white;
+
+        .footer-links a:hover {
+            color: var(--accent-color);
         }
-        .quiz-section {
-            background: linear-gradient(135deg, var(--color-limpio), var(--color-salud));
-            color: white;
-            padding: 40px;
-            border-radius: 15px;
-            margin: 20px 0;
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
         }
-        .btn-custom {
-            background: var(--color-salud);
-            border: none;
-            transition: background 0.3s ease;
+
+        .btn-primary:hover {
+            background-color: #3d8b40;
+            border-color: #3d8b40;
         }
-        .btn-custom:hover {
-            background: #218838;
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
         }
-        /* Estilos del Quiz */
-        .form-check-label {
-            color: white;
-        }
-        #quizResult {
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+        .btn-secondary:hover {
+            background-color: #0b7dda;
+            border-color: #0b7dda;
         }
     </style>
 </head>
 <body>
+    <!-- Navegación -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="#inicio"><i class="fas fa-heartbeat icon"></i> Higiene & Salud</a>
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-heart-pulse-fill me-2"></i>Higiene y Salud
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#objetivo">Objetivo</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#higiene">Tipos de Higiene</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#consecuencias">Consecuencias</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#beneficios">Beneficios</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#quiz">Quiz Interactivo</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#participa">Participa</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#higiene-personal">Higiene Personal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#higiene-alimentaria">Higiene Alimentaria</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#higiene-sueno">Higiene del Sueño</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#salud-mental">Salud Mental</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#ejercicio">Ejercicio Físico</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#quiz">Cuestionario</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <section class="hero" id="inicio">
+    <!-- Hero Section -->
+    <section class="hero-section">
         <div class="container">
-            <h1 class="display-3 fw-bold mb-4 animate_animated animate_bounceIn">¡Tu Higiene es Tu Superpoder!</h1>
-            <p class="lead mb-5">Descubre cómo prácticas simples transforman tu salud. Previene enfermedades, brilla con confianza y vive con vitalidad. ¡Únete a la revolución de la limpieza interior y exterior!</p>
-            <a href="#higiene" class="btn btn-light btn-lg px-5">Explora Ahora <i class="fas fa-arrow-down ms-2"></i></a>
+            <h1 class="display-4 fw-bold mb-4">Tu Guía Completa de Higiene y Salud</h1>
+            <p class="lead mb-4">Aprende sobre los mejores hábitos para mantener tu cuerpo y mente en óptimas condiciones</p>
+            <a href="#quiz" class="btn btn-light btn-lg">Evalúa tus conocimientos</a>
         </div>
     </section>
 
-    <section class="container my-5" id="objetivo">
-        <div class="section-hero text-center">
-            <h2 class="mb-4"><i class="fas fa-bullseye icon"></i>Objetivo de la Campaña</h2>
-            <p class="lead">Esta campaña integral busca educar y empoderar a la comunidad, con énfasis en estudiantes, sobre todos los aspectos de la higiene y salud. Desde lo personal hasta lo ambiental, cubrimos prácticas esenciales, sus impactos y cómo implementarlas con creatividad. ¡Porque una higiene óptima no solo previene males, sino que eleva tu calidad de vida al máximo!</p>
-            <div class="progress-higiene">
-                <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Cobertura Completa: 100%</div>
-            </div>
-        </div>
-    </section>
-
-    <section class="container my-5" id="higiene">
-        <h2 class="text-center mb-5"><i class="fas fa-shower icon"></i>Tipos de Higiene: Guía Completa</h2>
-        <div class="row">
-            <div class="col-md-6 col-lg-4 mb-4">
-                <div class="higiene-card">
-                    <div class="card-header"><i class="fas fa-user icon"></i>Higiene Personal</div>
-                    <div class="card-body">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNs-4fmokXF9qeHJco1pT8NM8PcI_Yb-K1oQ&s" class="card-img-top" alt="Persona lavándose las manos">
-                        <div class="accordion" id="accordionPersonal">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#tipsPersonal">
-                                        <i class="fas fa-lightbulb me-2"></i>Consejos Prácticos
-                                    </button>
-                                </h2>
-                                <div id="tipsPersonal" class="accordion-collapse collapse show" data-bs-parent="#accordionPersonal">
-                                    <div class="accordion-body">
-                                        <div class="tip-item"><i class="fas fa-hand-sparkles me-2"></i>Lávate las manos con jabón por 20 segundos antes de comer y después del baño.</div>
-                                        <div class="tip-item"><i class="fas fa-tshirt me-2"></i>Dúchate diariamente con agua tibia y jabón neutro.</div>
-                                        <div class="tip-item"><i class="fas fa-cut me-2"></i>Mantén uñas cortas y limpias.</div>
-                                        <div class="tip-item"><i class="fas fa-ban me-2"></i>No compartas toallas o ropa personal.</div>
-                                    </div>
+    <!-- Contenido Principal -->
+    <main class="container">
+        <!-- Higiene Personal -->
+        <section id="higiene-personal" class="mb-5">
+            <h2 class="section-title text-center">Higiene Personal</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="card">
+                        <img src="https://picsum.photos/seed/hygiene/600/400.jpg" class="card-img-top" alt="Higiene Personal">
+                        <div class="card-body">
+                            <h3 class="card-title">La Importancia de la Higiene Personal</h3>
+                            <p class="card-text">La higiene personal es fundamental para prevenir enfermedades y mantener una buena salud. Incluye prácticas como el lavado regular de manos, el baño diario, el cuidado bucal y el uso de ropa limpia.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Lava tus manos con agua y jabón durante al menos 20 segundos</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Cepíllate los dientes al menos dos veces al día</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Dúchate regularmente, especialmente después de hacer ejercicio</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Usa ropa limpia y transpirable</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Beneficios de una Buena Higiene</h3>
+                            <p>Mantener una buena higiene personal no solo previene enfermedades, sino que también mejora tu autoestima y bienestar general.</p>
+                            <div class="row text-center mt-4">
+                                <div class="col-6 mb-3">
+                                    <i class="bi bi-shield-check feature-icon"></i>
+                                    <h5>Protección contra gérmenes</h5>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <i class="bi bi-heart feature-icon"></i>
+                                    <h5>Mejor salud general</h5>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <i class="bi bi-emoji-smile feature-icon"></i>
+                                    <h5>Mayor autoconfianza</h5>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <i class="bi bi-people feature-icon"></i>
+                                    <h5>Mejores relaciones sociales</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="col-md-6 col-lg-4 mb-4">
-                <div class="higiene-card">
-                    <div class="card-header"><i class="fas fa-tooth me-2"></i>Higiene Bucal</div>
-                    <div class="card-body">
-                        <img src="https://images.unsplash.com/photo-1549420078-2d93e1b78298?q=80&w=600&auto=format&fit=crop" class="card-img-top" alt="Cepillo de dientes y pasta">
-                        <div class="accordion" id="accordionBucal">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tipsBucal">
-                                        <i class="fas fa-lightbulb me-2"></i>Consejos Prácticos
-                                    </button>
-                                </h2>
-                                <div id="tipsBucal" class="accordion-collapse collapse" data-bs-parent="#accordionBucal">
-                                    <div class="accordion-body">
-                                        <div class="tip-item"><i class="fas fa-brush me-2"></i>Cepíllate dos veces al día con flúor por 2 minutos.</div>
-                                        <div class="tip-item"><i class="fas fa-thread me-2"></i>Usa hilo dental diariamente.</div>
-                                        <div class="tip-item"><i class="fas fa-stethoscope me-2"></i>Visita al dentista cada 6 meses.</div>
-                                        <div class="tip-item"><i class="fas fa-apple-alt me-2"></i>Reduce azúcares y ácidos.</div>
-                                    </div>
+        <!-- Higiene Alimentaria -->
+        <section id="higiene-alimentaria" class="mb-5">
+            <h2 class="section-title text-center">Higiene Alimentaria</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="card">
+                        <img src="https://picsum.photos/seed/food-hygiene/600/400.jpg" class="card-img-top" alt="Higiene Alimentaria">
+                        <div class="card-body">
+                            <h3 class="card-title">Prácticas Seguras de Manipulación de Alimentos</h3>
+                            <p class="card-text">La higiene alimentaria es crucial para prevenir enfermedades transmitidas por alimentos. Sigue estas prácticas para garantizar la seguridad de lo que comes.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Lava frutas y verduras antes de consumirlas</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Cocina los alimentos a temperaturas adecuadas</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Refrigera los alimentos perecederos promptly</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Evita la contaminación cruzada</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Consejos para una Dieta Saludable</h3>
+                            <p>Una buena nutrición es parte fundamental de la higiene y salud general. Estos consejos te ayudarán a mantener una dieta equilibrada.</p>
+                            <div class="row text-center mt-4">
+                                <div class="col-6 mb-3">
+                                    <i class="bi bi-droplet-half feature-icon"></i>
+                                    <h5>Hidratación adecuada</h5>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <i class="bi bi-basket feature-icon"></i>
+                                    <h5>Frutas y verduras diarias</h5>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <i class="bi bi-egg-fried feature-icon"></i>
+                                    <h5>Proteínas de calidad</h5>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <i class="bi bi-bread-slice feature-icon"></i>
+                                    <h5>Carbohidratos complejos</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="col-md-6 col-lg-4 mb-4">
-                <div class="higiene-card">
-                    <div class="card-header"><i class="fas fa-leaf me-2"></i>Higiene Ambiental</div>
-                    <div class="card-body">
-                        <img src="https://images.unsplash.com/photo-1581454668270-e5558e806509?q=80&w=600&auto=format&fit=crop" class="card-img-top" alt="Persona reciclando y cuidando el planeta">
-                        <div class="accordion" id="accordionAmbiental">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tipsAmbiental">
-                                        <i class="fas fa-lightbulb me-2"></i>Consejos Prácticos
-                                    </button>
-                                </h2>
-                                <div id="tipsAmbiental" class="accordion-collapse collapse" data-bs-parent="#accordionAmbiental">
-                                    <div class="accordion-body">
-                                        <div class="tip-item"><i class="fas fa-recycle me-2"></i>Clasifica y recicla correctamente.</div>
-                                        <div class="tip-item"><i class="fas fa-water me-2"></i>Ahorra agua, repara fugas.</div>
-                                        <div class="tip-item"><i class="fas fa-plug me-2"></i>Desconecta aparatos que no uses.</div>
-                                        <div class="tip-item"><i class="fas fa-tree me-2"></i>Planta un árbol o cuida áreas verdes.</div>
-                                    </div>
+        <!-- Higiene del Sueño -->
+        <section id="higiene-sueno" class="mb-5">
+            <h2 class="section-title text-center">Higiene del Sueño</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="card">
+                        <img src="https://picsum.photos/seed/sleep-hygiene/600/400.jpg" class="card-img-top" alt="Higiene del Sueño">
+                        <div class="card-body">
+                            <h3 class="card-title">La Importancia del Descanso</h3>
+                            <p class="card-text">La higiene del sueño se refiere a los hábitos y prácticas que son necesarias para tener un buen descanso nocturno y estar alerta durante el día.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Mantén un horario regular de sueño</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Crea un ambiente de sueño confortable</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Evita pantallas antes de dormir</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Limita la cafeína y el alcohol por la noche</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Beneficios de un Buen Descanso</h3>
+                            <p>Dormir adecuadamente es esencial para la salud física y mental. Estos son algunos de los beneficios de mantener una buena higiene del sueño.</p>
+                            <div class="row text-center mt-4">
+                                <div class="col-6 mb-3">
+                                    <i class="bi bi-lightning-charge feature-icon"></i>
+                                    <h5>Mayor energía</h5>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <i class="bi bi-cpu feature-icon"></i>
+                                    <h5>Mejor concentración</h5>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <i class="bi bi-shield-plus feature-icon"></i>
+                                    <h5>Sistema inmune fuerte</h5>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <i class="bi bi-emoji-laughing feature-icon"></i>
+                                    <h5>Mejor estado de ánimo</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="container my-5" id="consecuencias">
-        <h2 class="text-center mb-4"><i class="fas fa-exclamation-triangle icon"></i>Riesgos de una Higiene Deficiente</h2>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="consecuencias">
-                    <p class="mb-0"><strong>¡Atención!</strong> La falta de higiene personal y ambiental puede llevar a graves problemas de salud como infecciones gastrointestinales, enfermedades de la piel, y la propagación de virus. En el ambiente, contribuye a la contaminación y el deterioro ecológico. Mantener la limpieza es proteger tu vida y tu entorno.</p>
+        <!-- Salud Mental -->
+        <section id="salud-mental" class="mb-5">
+            <h2 class="section-title text-center">Salud Mental</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="card">
+                        <img src="https://picsum.photos/seed/mental-health/600/400.jpg" class="card-img-top" alt="Salud Mental">
+                        <div class="card-body">
+                            <h3 class="card-title">Cuidando tu Bienestar Emocional</h3>
+                            <p class="card-text">La salud mental es tan importante como la física. Aprende a identificar tus emociones y desarrollar estrategias para manejar el estrés.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Practica la meditación o mindfulness</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Establece límites saludables</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Busca apoyo cuando lo necesites</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Dedica tiempo a actividades que disfrutes</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Estrategias para Reducir el Estrés</h3>
+                            <p>El estrés crónico puede afectar negativamente tu salud. Implementa estas técnicas para mantenerlo bajo control.</p>
+                            <div class="row text-center mt-4">
+                                <div class="col-6 mb-3">
+                                    <i class="bi bi-wind feature-icon"></i>
+                                    <h5>Técnicas de respiración</h5>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <i class="bi bi-person-walking feature-icon"></i>
+                                    <h5>Ejercicio regular</h5>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <i class="bi bi-journal-text feature-icon"></i>
+                                    <h5>Escritura terapéutica</h5>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <i class="bi bi-people feature-icon"></i>
+                                    <h5>Conexiones sociales</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="container my-5" id="beneficios">
-        <h2 class="text-center mb-4"><i class="fas fa-check-circle icon"></i>Beneficios de la Higiene Óptima</h2>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="beneficios">
-                    <p class="mb-0"><strong>Ventajas:</strong> Una higiene adecuada fortalece el sistema inmunológico, aumenta la autoestima, previene enfermedades, mejora las relaciones sociales y contribuye a un planeta más limpio y saludable. ¡Invierte en tu bienestar!</p>
+        <!-- Ejercicio Físico -->
+        <section id="ejercicio" class="mb-5">
+            <h2 class="section-title text-center">Ejercicio Físico</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="card">
+                        <img src="https://picsum.photos/seed/exercise/600/400.jpg" class="card-img-top" alt="Ejercicio Físico">
+                        <div class="card-body">
+                            <h3 class="card-title">La Importancia del Movimiento</h3>
+                            <p class="card-text">El ejercicio regular es fundamental para mantener un cuerpo sano y una mente activa. Descubre cómo incorporarlo en tu rutina diaria.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Busca actividades que disfrutes</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Establece metas realistas</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Incluye diferentes tipos de ejercicio</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Escucha a tu cuerpo y descansa adecuadamente</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Tipos de Ejercicio y sus Beneficios</h3>
+                            <p>Una rutina equilibrada debe incluir diferentes tipos de ejercicio para trabajar todos los aspectos de tu condición física.</p>
+                            <div class="row text-center mt-4">
+                                <div class="col-6 mb-3">
+                                    <i class="bi bi-heart-pulse feature-icon"></i>
+                                    <h5>Cardiovascular</h5>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <i class="bi bi-trophy feature-icon"></i>
+                                    <h5>Fuerza</h5>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <i class="bi bi-arrow-left-right feature-icon"></i>
+                                    <h5>Flexibilidad</h5>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <i class="bi bi-balance-scale feature-icon"></i>
+                                    <h5>Equilibrio</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="container my-5" id="quiz">
-        <div class="quiz-section">
-            <h2 class="text-center mb-5"><i class="fas fa-brain icon"></i>Quiz Interactivo: Pon a Prueba Tu Conocimiento</h2>
+        <!-- Cuestionario Interactivo -->
+        <section id="quiz" class="mb-5">
+            <h2 class="section-title text-center">Evalúa tus Conocimientos</h2>
+            <div class="quiz-container">
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
+                </div>
+                
+                <div id="quiz-content">
+                    <!-- Pregunta 1 -->
+                    <div class="quiz-question active" data-question="1">
+                        <h3>¿Cuánto tiempo se recomienda lavarse las manos para eliminar gérmenes eficazmente?</h3>
+                        <div class="quiz-options">
+                            <button class="quiz-option" data-answer="incorrect">10 segundos</button>
+                            <button class="quiz-option" data-answer="correct">Al menos 20 segundos</button>
+                            <button class="quiz-option" data-answer="incorrect">5 segundos</button>
+                            <button class="quiz-option" data-answer="incorrect">1 minuto</button>
+                        </div>
+                        <div class="feedback mt-3"></div>
+                    </div>
+                    
+                    <!-- Pregunta 2 -->
+                    <div class="quiz-question" data-question="2">
+                        <h3>¿Cuál es la temperatura mínima segura para cocinar carnes como pollo o cerdo?</h3>
+                        <div class="quiz-options">
+                            <button class="quiz-option" data-answer="incorrect">50°C</button>
+                            <button class="quiz-option" data-answer="incorrect">60°C</button>
+                            <button class="quiz-option" data-answer="correct">74°C</button>
+                            <button class="quiz-option" data-answer="incorrect">100°C</button>
+                        </div>
+                        <div class="feedback mt-3"></div>
+                    </div>
+                    
+                    <!-- Pregunta 3 -->
+                    <div class="quiz-question" data-question="3">
+                        <h3>¿Cuántas horas de sueño se recomiendan para un adulto?</h3>
+                        <div class="quiz-options">
+                            <button class="quiz-option" data-answer="incorrect">4-5 horas</button>
+                            <button class="quiz-option" data-answer="correct">7-9 horas</button>
+                            <button class="quiz-option" data-answer="incorrect">10-12 horas</button>
+                            <button class="quiz-option" data-answer="incorrect">6 horas exactas</button>
+                        </div>
+                        <div class="feedback mt-3"></div>
+                    </div>
+                    
+                    <!-- Pregunta 4 -->
+                    <div class="quiz-question" data-question="4">
+                        <h3>¿Cuál de las siguientes actividades es más efectiva para reducir el estrés?</h3>
+                        <div class="quiz-options">
+                            <button class="quiz-option" data-answer="incorrect">Ver televisión por horas</button>
+                            <button class="quiz-option" data-answer="correct">Meditación y respiración profunda</button>
+                            <button class="quiz-option" data-answer="incorrect">Comer alimentos altos en azúcar</button>
+                            <button class="quiz-option" data-answer="incorrect">Dormir durante el día</button>
+                        </div>
+                        <div class="feedback mt-3"></div>
+                    </div>
+                    
+                    <!-- Pregunta 5 -->
+                    <div class="quiz-question" data-question="5">
+                        <h3>¿Cuántos días a la semana se recomienda hacer ejercicio cardiovascular para mantener una buena salud?</h3>
+                        <div class="quiz-options">
+                            <button class="quiz-option" data-answer="incorrect">1 día a la semana</button>
+                            <button class="quiz-option" data-answer="incorrect">3 días a la semana</button>
+                            <button class="quiz-option" data-answer="correct">Al menos 5 días a la semana</button>
+                            <button class="quiz-option" data-answer="incorrect">Todos los días sin descanso</button>
+                        </div>
+                        <div class="feedback mt-3"></div>
+                    </div>
+                </div>
+                
+                <!-- Resultados -->
+                <div class="quiz-result" id="quiz-result">
+                    <h3>¡Has completado el cuestionario!</h3>
+                    <div class="result-score mb-4">
+                        <h2>Tu puntuación: <span id="score-value">0</span>/5</h2>
+                    </div>
+                    <div class="result-message mb-4" id="result-message"></div>
+                    <button class="btn btn-primary" id="restart-quiz">Reiniciar Cuestionario</button>
+                </div>
+                
+                <div class="d-flex justify-content-between mt-4">
+                    <button class="btn btn-secondary" id="prev-question" disabled>Anterior</button>
+                    <button class="btn btn-primary" id="next-question" disabled>Siguiente</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>Higiene y Salud</h5>
+                    <p>Tu guía completa para mantener un estilo de vida saludable.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Enlaces Útiles</h5>
+                    <div class="footer-links">
+                        <a href="#higiene-personal">Higiene Personal</a><br>
+                        <a href="#higiene-alimentaria">Higiene Alimentaria</a><br>
+                        <a href="#higiene-sueno">Higiene del Sueño</a><br>
+                        <a href="#salud-mental">Salud Mental</a><br>
+                        <a href="#ejercicio">Ejercicio Físico</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Contacto</h5>
+                    <p><i class="bi bi-envelope me-2"></i>info@higieneysalud.com</p>
+                    <p><i class="bi bi-telephone me-2"></i>+34 123 456 789</p>
+                    <div class="social-links mt-3">
+                        <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-twitter fs-4"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-4"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-linkedin fs-4"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="text-center">
+                <p>&copy; 2023 Higiene y Salud. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Variables del cuestionario
+            const questions = document.querySelectorAll('.quiz-question');
+            const options = document.querySelectorAll('.quiz-option');
+            const prevButton = document.getElementById('prev-question');
+            const nextButton = document.getElementById('next-question');
+            const restartButton = document.getElementById('restart-quiz');
+            const progressBar = document.getElementById('progress-bar');
+            const quizContent = document.getElementById('quiz-content');
+            const quizResult = document.getElementById('quiz-result');
+            const scoreValue = document.getElementById('score-value');
+            const resultMessage = document.getElementById('result-message');
             
-            <form id="higieneQuiz">
+            let currentQuestion = 1;
+            let score = 0;
+            let answeredQuestions = {};
+            
+            // Event listeners para las opciones del cuestionario
+            options.forEach(option => {
+                option.addEventListener('click', function() {
+                    const question = this.closest('.quiz-question');
+                    const questionNumber = parseInt(question.dataset.question);
+                    const isCorrect = this.dataset.answer === 'correct';
+                    
+                    // Marcar la pregunta como respondida
+                    answeredQuestions[questionNumber] = isCorrect;
+                    
+                    // Deshabilitar todas las opciones de esta pregunta
+                    const questionOptions = question.querySelectorAll('.quiz-option');
+                    questionOptions.forEach(opt => {
+                        opt.disabled = true;
+                        if (opt.dataset.answer === 'correct') {
+                            opt.classList.add('correct');
+                        } else if (opt === this && !isCorrect) {
+                            opt.classList.add('incorrect');
+                        }
+                    });
+                    
+                    // Mostrar retroalimentación
+                    const feedback = question.querySelector('.feedback');
+                    if (isCorrect) {
+                        feedback.innerHTML = '<div class="alert alert-success">¡Correcto!</div>';
+                    } else {
+                        feedback.innerHTML = '<div class="alert alert-danger">Incorrecto. La respuesta correcta está resaltada en verde.</div>';
+                    }
+                    
+                    // Habilitar el botón de siguiente
+                    nextButton.disabled = false;
+                    
+                    // Actualizar la barra de progreso
+                    updateProgressBar();
+                });
+            });
+            
+            // Event listener para el botón de siguiente
+            nextButton.addEventListener('click', function() {
+                if (currentQuestion < questions.length) {
+                    // Ocultar la pregunta actual
+                    document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`).classList.remove('active');
+                    
+                    // Mostrar la siguiente pregunta
+                    currentQuestion++;
+                    document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`).classList.add('active');
+                    
+                    // Actualizar botones
+                    prevButton.disabled = false;
+                    
+                    // Si esta pregunta ya fue respondida, deshabilitar opciones y mostrar respuesta correcta
+                    if (answeredQuestions[currentQuestion]) {
+                        const question = document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`);
+                        const questionOptions = question.querySelectorAll('.quiz-option');
+                        questionOptions.forEach(opt => {
+                            opt.disabled = true;
+                            if (opt.dataset.answer === 'correct') {
+                                opt.classList.add('correct');
+                            }
+                        });
+                        
+                        const feedback = question.querySelector('.feedback');
+                        feedback.innerHTML = '<div class="alert alert-info">Ya respondiste esta pregunta anteriormente.</div>';
+                    } else {
+                        nextButton.disabled = true;
+                    }
+                    
+                    // Si es la última pregunta, cambiar el texto del botón
+                    if (currentQuestion === questions.length) {
+                        nextButton.textContent = 'Ver Resultados';
+                    } else {
+                        nextButton.textContent = 'Siguiente';
+                    }
+                    
+                    // Actualizar la barra de progreso
+                    updateProgressBar();
+                } else {
+                    // Mostrar resultados
+                    showResults();
+                }
+            });
+            
+            // Event listener para el botón de anterior
+            prevButton.addEventListener('click', function() {
+                if (currentQuestion > 1) {
+                    // Ocultar la pregunta actual
+                    document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`).classList.remove('active');
+                    
+                    // Mostrar la pregunta anterior
+                    currentQuestion--;
+                    document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`).classList.add('active');
+                    
+                    // Actualizar botones
+                    if (currentQuestion === 1) {
+                        prevButton.disabled = true;
+                    }
+                    
+                    // Si esta pregunta ya fue respondida, deshabilitar opciones y mostrar respuesta correcta
+                    if (answeredQuestions[currentQuestion]) {
+                        const question = document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`);
+                        const questionOptions = question.querySelectorAll('.quiz-option');
+                        questionOptions.forEach(opt => {
+                            opt.disabled = true;
+                            if (opt.dataset.answer === 'correct') {
+                                opt.classList.add('correct');
+                            }
+                        });
+                        
+                        const feedback = question.querySelector('.feedback');
+                        feedback.innerHTML = '<div class="alert alert-info">Ya respondiste esta pregunta anteriormente.</div>';
+                    } else {
+                        nextButton.disabled = true;
+                    }
+                    
+                    // Cambiar el texto del botón de siguiente si es necesario
+                    nextButton.textContent = 'Siguiente';
+                    
+                    // Actualizar la barra de progreso
+                    updateProgressBar();
+                }
+            });
+            
+            // Event listener para el botón de reiniciar
+            restartButton.addEventListener('click', function() {
+                // Reiniciar variables
+                currentQuestion = 1;
+                score = 0;
+                answeredQuestions = {};
                 
-                <div class="mb-4">
-                    <p class="fw-bold">1. ¿Cuál es el tiempo mínimo recomendado para lavarse las manos correctamente?</p>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="q1" id="q1a" value="0">
-                        <label class="form-check-label" for="q1a">5 segundos</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="q1" id="q1b" value="10">
-                        <label class="form-check-label" for="q1b">20 segundos</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="q1" id="q1c" value="0">
-                        <label class="form-check-label" for="q1c">30 segundos</label>
-                    </div>
-                </div>
-
-                <div class="mb-4">
-                    <p class="fw-bold">2. ¿Con qué frecuencia se debe usar el hilo dental?</p>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="q2" id="q2a" value="10">
-                        <label class="form-check-label" for="q2a">Diariamente</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="q2" id="q2b" value="0">
-                        <label class="form-check-label" for="q2b">Solo cuando siento algo atorado</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="q2" id="q2c" value="0">
-                        <label class="form-check-label" for="q2c">Semanalmente</label>
-                    </div>
-                </div>
-
-                <div class="mb-4">
-                    <p class="fw-bold">3. ¿Qué tipo de infección se previene más eficazmente con el lavado de manos?</p>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="q3" id="q3a" value="0">
-                        <label class="form-check-label" for="q3a">Infecciones de la vista</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="q3" id="q3b" value="10">
-                        <label class="form-check-label" for="q3b">Infecciones gastrointestinales (diarrea, cólera)</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="q3" id="q3c" value="0">
-                        <label class="form-check-label" for="q3c">Fracturas óseas</label>
-                    </div>
-                </div>
+                // Ocultar resultados
+                quizResult.classList.remove('active');
                 
-                <div class="mb-4">
-                    <p class="fw-bold">4. Además de prevenir enfermedades, ¿cuál es un beneficio social directo de la higiene personal?</p>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="q4" id="q4a" value="0">
-                        <label class="form-check-label" for="q4a">Ahorrar agua</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="q4" id="q4b" value="10">
-                        <label class="form-check-label" for="q4b">Mejora la autoestima y las relaciones sociales</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="q4" id="q4c" value="0">
-                        <label class="form-check-label" for="q4c">Reduce el uso de electricidad</label>
-                    </div>
-                </div>
-
-                <div class="mb-4">
-                    <p class="fw-bold">5. ¿Cuál es una práctica esencial de la Higiene Alimentaria para evitar enfermedades?</p>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="q5" id="q5a" value="0">
-                        <label class="form-check-label" for="q5a">Guardar carne cruda junto a vegetales listos para comer</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="q5" id="q5b" value="10">
-                        <label class="form-check-label" for="q5b">Lavar y desinfectar frutas y verduras antes de consumirlas</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio"
-                            
+                // Mostrar la primera pregunta
+                questions.forEach(question => {
+                    question.classList.remove('active');
+                    const questionOptions = question.querySelectorAll('.quiz-option');
+                    questionOptions.forEach(opt => {
+                        opt.disabled = false;
+                        opt.classList.remove('correct', 'incorrect');
+                    });
+                    
+                    const feedback = question.querySelector('.feedback');
+                    feedback.innerHTML = '';
+                });
+                
+                document.querySelector(`.quiz-question[data-question="1"]`).classList.add('active');
+                
+                // Restablecer botones
+                prevButton.disabled = true;
+                nextButton.disabled = true;
+                nextButton.textContent = 'Siguiente';
+                
+                // Restablecer la barra de progreso
+                updateProgressBar();
+            });
+            
+            // Función para actualizar la barra de progreso
+            function updateProgressBar() {
+                const progress = (currentQuestion / questions.length) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+            
+            // Función para mostrar los resultados
+            function showResults() {
+                // Calcular puntuación
+                score = Object.values(answeredQuestions).filter(value => value === true).length;
+                
+                // Ocultar preguntas
+                quizContent.style.display = 'none';
+                
+                // Mostrar resultados
+                scoreValue.textContent = score;
+                
+                // Mensaje según la puntuación
+                if (score === 5) {
+                    resultMessage.innerHTML = '<div class="alert alert-success">¡Excelente! Tienes un conocimiento completo sobre higiene y salud.</div>';
+                } else if (score >= 3) {
+                    resultMessage.innerHTML = '<div class="alert alert-info">Buen trabajo. Tienes un buen conocimiento, pero hay áreas que podrías mejorar.</div>';
+                } else {
+                    resultMessage.innerHTML = '<div class="alert alert-warning">Sigue aprendiendo sobre higiene y salud para mejorar tus conocimientos.</div>';
+                }
+                
+                quizResult.classList.add('active');
+                
+                // Ocultar botones de navegación
+                prevButton.style.display = 'none';
+                nextButton.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
